@@ -1,0 +1,10 @@
+# UE generated files
+
+*/Binaries/
+*/Build/
+*/Intermediate/
+*/Saved/
+BuildingEscape/Content/StarterContent/
+
+# VS generated files
+BuildingEscape/.vs/
