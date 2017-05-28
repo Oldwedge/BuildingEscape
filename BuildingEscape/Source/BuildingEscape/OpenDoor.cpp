@@ -37,13 +37,11 @@ void UOpenDoor::OpenDoor()
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	// poll trigger volume
-	//if the actor who opens is in the volume
-	/*if (PressurePlate->IsOverlappingActor(ActorThatOpens))
+
+	if (PressurePlate->IsOverlappingActor(ActorThatOpens))
 	{
 		OpenDoor();
-	}*/
-	      //open the door
+	}
 	
 }
 
