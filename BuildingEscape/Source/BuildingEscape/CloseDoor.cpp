@@ -1,11 +1,11 @@
 // Copyright KMSA 2017
 
 #include "BuildingEscape.h"
-#include "OpenDoor.h"
+#include "CloseDoor.h"
 
 
 // Sets default values for this component's properties
-UOpenDoor::UOpenDoor()
+UCloseDoor::UCloseDoor()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
@@ -16,44 +16,35 @@ UOpenDoor::UOpenDoor()
 
 
 // Called when the game starts
-void UOpenDoor::BeginPlay()
+void UCloseDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
-
+	// ...
+	ActorThatCloses = GetWorld()->GetFirstPlayerController()->GetPawn();
+	
 }
 
-void UOpenDoor::OpenDoor()
+void UCloseDoor::CloseDoor()
 {
+
 	// Find owning actor
-	AActor* Owner = GetOwner();
-
-	FRotator NewRotation = FRotator(0.0f, OpenAngle, 0.0f);
-
-	Owner->SetActorRotation(NewRotation);
-}
-
-void UOpenDoor::CloseDoor()
-{
 	AActor* Owner = GetOwner();
 
 	FRotator NewRotation = FRotator(0.0f, CloseAngle, 0.0f);
 
 	Owner->SetActorRotation(NewRotation);
+
 }
 
 
 // Called every frame
-void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UCloseDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (PressurePlate->IsOverlappingActor(ActorThatOpens))
-	{
-		OpenDoor();
-	}
-	else
+	// ...
+	if (!PressurePlate->IsOverlappingActor(ActorThatCloses))
 	{
 		CloseDoor();
 	}
