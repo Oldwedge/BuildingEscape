@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright KMSA 2017
 
 #include "BuildingEscape.h"
 #include "PositionReport.h"
@@ -12,6 +12,7 @@ UPositionReport::UPositionReport()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
+	
 }
 
 
@@ -20,8 +21,15 @@ void UPositionReport::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
+	FString ObjectName = GetOwner()->GetName();
+	FString ObjectPos2 = GetOwner()->GetTransform().GetLocation().ToString();
+	FString ObjectPos = GetOwner()->GetActorLocation().ToString();
+
+	//just to check
+	if (ObjectPos != ObjectPos2) { UE_LOG(LogTemp, Error, TEXT("ObjectPos function failing!")); }
+
 	
+	UE_LOG(LogTemp, Warning, TEXT("%s is at position %s."),*ObjectName, *ObjectPos);
 }
 
 
